@@ -5,6 +5,15 @@
     - tomcat
     - packages
 
+- name: configure tomcat
+  template: src="{{ item }}.j2" dest="/etc/tomcat/{{ item }}" owner=tomcat group=tomcat mode=0664
+  with_items:
+    - server.xml
+  notify: restart tomcat
+  tags:
+    - tomcat
+    - configuration
+
 - name: ensure tomcat is enabled and running
   service: name=tomcat enabled=yes state=started
   tags:
