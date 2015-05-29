@@ -1,2 +1,22 @@
 ---
-# tasks file for tomcat
+- name: install tomcat
+  yum: name=tomcat state=present
+  tags:
+    - tomcat
+    - packages
+
+- name: ensure tomcat is enabled and running
+  service: name=tomcat enabled=yes state=started
+  tags:
+    - tomcat
+    - configuration
+    - services
+
+- name: configure firewalld for tomcat http
+  firewalld: zone=public port="{{ tomcat_http_port }}/tcp" permanent=true state=enabled
+  notify: reload firewall
+  when: tomcat_open_http_port and ansible_distribution_major_version|int > 6
+  tags:
+    - tomcat
+    - firewall
+    - configuration

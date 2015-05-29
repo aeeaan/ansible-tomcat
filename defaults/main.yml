@@ -1,2 +1,4 @@
 ---
-# defaults file for tomcat
+tomcat_http_port: 8080
+tomcat_open_http_port: false
+
