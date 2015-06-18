@@ -13,11 +13,13 @@ Role Variables
 | tomcat_open_http_port			| false						|				|
 | tomcat_ajp_port			| 8009						|				|
 
+Dependencies
+------------
+
+- correcthorse.common
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
     - hosts: servers
       roles:
